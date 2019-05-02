@@ -1,8 +1,8 @@
 ﻿namespace GildedRose.Entities
 {
-    public class AgedBrie : AbstractItem
+    public class NormalItem: AbstractItem
     {
-        public AgedBrie(int sellIn, int quality, string name = "Aged Brie")
+        public NormalItem(int sellIn, int quality, string name = "Conjured")
         {
             Name = name;
             Quality = quality;
@@ -11,16 +11,16 @@
 
         public override void UpdateQuality()
         {
-            if (Quality < 50)
+            if (Quality > 0)
             {
-                Quality += 1;
+                Quality -= 1;
             }
 
             DecrementSellIn();
 
-            if (SellIn < 0 && Quality < 50)
+            if (SellIn < 0 && Quality > 0)
             {
-                Quality += 1;
+                Quality -= 1;
             }
         }
     }

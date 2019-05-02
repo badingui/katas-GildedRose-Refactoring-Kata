@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using GildedRose;
 using NUnit.Framework;
 
-namespace csharp
+namespace GildedRose.Tests.ApprovalTest
 {
     [TestFixture]
     public class ApprovalTest
@@ -11,7 +12,7 @@ namespace csharp
         [Test]
         public void ThirtyDays()
         {
-            var lines = File.ReadAllLines("ThirtyDays.txt");
+            var lines = File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ThirtyDays.txt"));
 
             StringBuilder fakeoutput = new StringBuilder();
             Console.SetOut(new StringWriter(fakeoutput));

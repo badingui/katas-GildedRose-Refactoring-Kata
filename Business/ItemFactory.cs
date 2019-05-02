@@ -1,10 +1,10 @@
-﻿using csharp.Entities;
+﻿using GildedRose.Entities;
 
-namespace csharp
+namespace GildedRose
 {
-    public class ItemFactory
+    public class ItemFactory : IItemFactory
     {
-        public Item GetItem(string name, int quality, int sellIn)
+        public AbstractItem CreateItem(string name, int quality, int sellIn)
         {
             switch (name)
             {
@@ -14,16 +14,10 @@ namespace csharp
                     return new Backstage(sellIn, quality, name);
                 case "Sulfuras, Hand of Ragnaros":
                     return new SulfurasHand(sellIn, quality, name);
-                case "Conjured":
+                case "Conjured Mana Cake":
                     return new Conjured(sellIn, quality, name);
                 default:
-                    return new Item()
-                    {
-                        Name = name,
-                        SellIn = sellIn,
-                        Quality = quality
-                    };
-
+                    return new NormalItem(sellIn, quality, name);
             }
         }
     }

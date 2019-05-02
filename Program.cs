@@ -1,40 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using GildedRose.Entities;
+using Unity;
 
-namespace csharp
+namespace GildedRose
 {
     public class Program
     {
+        private static IItemFactory _itemFactory;
+
+        static Program()
+        {
+            var container = UnityConfig.Register();
+            _itemFactory = container.Resolve<IItemFactory>();
+        }
+
         public static void Main(string[] args)
         {
             Console.WriteLine("OMGHAI!");
 
-            IList<Item> Items = new List<Item>{
-                new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
-                new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
-                new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
-                new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
-                new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = -1, Quality = 80},
-                new Item
-                {
-                    Name = "Backstage passes to a TAFKAL80ETC concert",
-                    SellIn = 15,
-                    Quality = 20
-                },
-                new Item
-                {
-                    Name = "Backstage passes to a TAFKAL80ETC concert",
-                    SellIn = 10,
-                    Quality = 49
-                },
-                new Item
-                {
-                    Name = "Backstage passes to a TAFKAL80ETC concert",
-                    SellIn = 5,
-                    Quality = 49
-                },
+            IList<AbstractItem> Items = new List<AbstractItem>{
+                _itemFactory.CreateItem ( name:  "+5 Dexterity Vest", sellIn:  10, quality:  20),
+                _itemFactory.CreateItem ( name:  "Aged Brie", sellIn:  2, quality:  0),
+                _itemFactory.CreateItem ( name:  "Elixir of the Mongoose", sellIn:  5, quality:  7),
+                _itemFactory.CreateItem ( name:  "Sulfuras, Hand of Ragnaros", sellIn:  0, quality:  80),
+                _itemFactory.CreateItem ( name:  "Sulfuras, Hand of Ragnaros", sellIn:  -1, quality:  80),
+                _itemFactory.CreateItem (
+                    name:  "Backstage passes to a TAFKAL80ETC concert",
+                    sellIn:  15,
+                    quality:  20
+                ),
+                _itemFactory.CreateItem(
+                    name:  "Backstage passes to a TAFKAL80ETC concert",
+                    sellIn:  10,
+                    quality:  49
+                ),
+                _itemFactory.CreateItem(
+                    name:  "Backstage passes to a TAFKAL80ETC concert",
+                    sellIn:  5,
+                    quality:  49
+                ),
 				// this conjured item does not work properly yet
-				new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
+				_itemFactory.CreateItem ( name:  "Conjured Mana Cake", sellIn:  3, quality:  6)
             };
 
             var app = new GildedRose(Items);

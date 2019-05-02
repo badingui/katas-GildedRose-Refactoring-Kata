@@ -1,8 +1,8 @@
-﻿namespace csharp.Entities
+﻿namespace GildedRose.Entities
 {
-    public class Conjured : Item
+    public class Conjured : AbstractItem
     {
-        public Conjured(int sellIn, int quality, string name = "Conjured")
+        public Conjured(int sellIn, int quality, string name = "Conjured Mana Cake")
         {
             Name = name;
             Quality = quality;
@@ -13,14 +13,14 @@
         {
             if (Quality > 0)
             {
-                Quality = Quality - 2;
+                Quality -= 2;
             }
 
-            SellIn = SellIn - 1;
+            DecrementSellIn();
 
             if (SellIn < 0 && Quality > 0)
             {
-                Quality = Quality - 2;
+                Quality -= 2;
             }
         }
     }
