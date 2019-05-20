@@ -22,6 +22,7 @@
             {
                 Quality -= 2;
                 // server mod
+				//Dd
             }
         }
     }
