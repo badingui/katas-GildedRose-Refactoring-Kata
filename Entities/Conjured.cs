@@ -21,6 +21,7 @@
             if (SellIn < 0 && Quality > 0)
             {
                 Quality -= 2;
+				//Dd
             }
         }
     }
